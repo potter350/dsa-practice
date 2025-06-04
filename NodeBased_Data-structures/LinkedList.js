@@ -98,6 +98,45 @@ class LinkedList{
         return
     }
 
+    lastValue(){
+        if(!this.firstnode) return null;
+        let currentNode = this.firstnode
+        let currentIndex = 0;
+        let currentData = this.firstnode.data
+        while(currentNode){
+             currentIndex ++;
+             currentData = currentNode.data
+             currentNode = currentNode.nextNode
+        }
+        return currentData
+    }
+
+    reverseList(){
+      let previousNode = null;
+      let currentNode = this.firstnode // - A
+      while(currentNode){
+        const newNode = currentNode.nextNode //storing next node - B C
+        console.log('newNode',newNode);
+        currentNode.nextNode = previousNode  //reversing pointer - null A
+        console.log('currentNode.nextNode = previousNode',currentNode.nextNode = previousNode);
+
+        previousNode = currentNode           //previous move forward - B C
+        console.log('previousNode',previousNode);
+        
+        currentNode = newNode                //current move forward - B C
+        console.log('currentNode',currentNode);
+
+      }
+        this.firstnode = previousNode
+        console.log('this.firstnode = previousNode',this.firstnode = previousNode);
+
+    }
+
+    nodeToDeleteMiddle(node){
+       node.data = node.nextNode.data
+       return node.nextNode = node.nextNode.nextNode
+    }
+
     
 }
 
