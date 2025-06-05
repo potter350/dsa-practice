@@ -1,3 +1,4 @@
+import TreeNode from "./TreeNode.js"
 
 class BinarySearchTree {
     constructor(data) {
@@ -22,14 +23,14 @@ class BinarySearchTree {
             if (!node.leftChild) {
                 node.leftChild = new TreeNode(value)
             } else {
-                insertNode(value, node.leftChild)
+                this.insertNode(value, node.leftChild)
             }
         }
         else if (value > node.data) {
             if (!node.rightChild) {
                 node.rightChild = new TreeNode(value)
             } else {
-                insertNode(value, node.rightChild)
+                this.insertNode(value, node.rightChild)
             }
         }
     }
@@ -73,6 +74,8 @@ class BinarySearchTree {
     // 4.if node has 2 children, find succussor node, replace it with node to delete
 
     deleteNode(valueToDelete, node) {
+        console.log('delete node called');
+
         let currentNode = node;
         let parrentNodeOfCurrentNode = null
         let childOfDeleteNode
@@ -83,7 +86,7 @@ class BinarySearchTree {
             // base condition - loops ends when(1.nodeToDelete found or 2.reach end currentnode = null)
             if (valueToDelete === currentNode.data) {
                 nodeToDelete = currentNode
-                return
+                break;
             }
             parrentNodeOfCurrentNode = currentNode
             if (valueToDelete < currentNode.data) {
@@ -93,7 +96,7 @@ class BinarySearchTree {
                 currentNode = currentNode.rightChild
             }
         }
-
+        console.log('nodetodelete', nodeToDelete)
         if (!currentNode) return null;
 
         // if deleting node has 2 children
@@ -156,19 +159,19 @@ class BinarySearchTree {
     // }
 
     // version two
-    replaceWithSuccessorNode(node){
+    replaceWithSuccessorNode(node) {
         let successorNode = node.rightChild
         let parentOfSuccessorNode = node
 
         // if leftchild is not there on successor node
-        if(!successorNode.leftChild){
-             node.data = successorNode.data
-             node.rightChild = successorNode.rightChild
-             return
+        if (!successorNode.leftChild) {
+            node.data = successorNode.data
+            node.rightChild = successorNode.rightChild
+            return
         }
 
         // finding last chain value of leftchild(successor node)
-        while(successorNode.leftChild){
+        while (successorNode.leftChild) {
             parentOfSuccessorNode = successorNode
             successorNode = successorNode.leftChild
         }
@@ -177,16 +180,42 @@ class BinarySearchTree {
         node.data = successorNode.data
 
         // unlinking successor node
-        if(successorNode.rightChild){
+        if (successorNode.rightChild) {
             parentOfSuccessorNode.leftChild = successorNode.rightChild
-        }else{
+        } else {
             parentOfSuccessorNode.leftChild = null
         }
 
         return successorNode
-        
-
-
 
     }
+
+    // traverse (visiting all nodes)(printing all values in tree sortedly)
+    traverseAndPrint(node) {
+        let traverseCollection = []
+        function print(current){
+            if (!current) return current;
+            print(current.leftChild);
+            traverseCollection.push(current.data);
+            print(current.rightChild);
+        }
+
+
+        print(node)
+        return this.traverseCollection
+    }
+
+    // Write an algorithm that finds the greatest value within a binary search tree.
+    findGreatestNumber(baseNode){
+         let greatestNode;
+         if(!baseNode) return null;
+         while(baseNode.rightChild){
+             greatestNode = baseNode.rightChild
+             baseNode = baseNode.rightChild
+         }
+        return greatestNode.data
+    }
+
 }
+
+export default BinarySearchTree;

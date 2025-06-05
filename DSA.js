@@ -771,6 +771,7 @@ const queue = new QueueLinkedList()
 // ----------------------- Binary Search Tree --------------------------
 
 import TreeNode from "./NodeBased_Data-structures/BinarySearch-Tree/TreeNode.js"
+import BinarySearchTree from "./NodeBased_Data-structures/BinarySearch-Tree/BinarySearchTree.js"
 
 const node11 = new TreeNode(9)
 const node12 = new TreeNode(14)
@@ -784,7 +785,7 @@ const node16 = new TreeNode(62)
 const node17 = new TreeNode(77)
 const node18 = new TreeNode(96)
 
-
+50,25,10,9,14,23,22,31,75,59,36,62,87,77,96
 const node3 = new TreeNode(10, node11, node12)
 const node4 = new TreeNode(23, node13, node14)
 
@@ -830,7 +831,40 @@ function insertNode(value, node){
    }
 }
 
-let testingInsertNodes = insertNode(11, root)
-let testingSearchNodes = searchNode(11, root)
+// let testingInsertNodes = insertNode(11, root)
+// let testingSearchNodes = searchNode(11, root)
+// let BST = new BinarySearchTree()
+// let restingDeleteNodes = BST.deleteNode(9, root)
+// let traversingNodes = BST.traverseAndPrint(root)
 
- console.log('testingInsertNodes',root)
+//  console.log('restingDeleteNodes',root)
+//  console.log('traversingNodes',traversingNodes)
+
+
+
+
+
+
+
+// ------------------- Binary Search Tree exercises -----------------
+let rootNode = new TreeNode()
+let BST = new BinarySearchTree()
+
+
+function insertValuesInToEmptyBST(){
+       let  insertArray =  [1, 5, 9, 2, 4, 10, 6, 3, 8] 
+       let root = new TreeNode(1)
+       insertArray.forEach( (x)=> {
+          BST.insertNode(x, root)
+       })
+       console.log('root',root);
+       return root
+       
+
+}
+insertValuesInToEmptyBST()
+
+let testingFindGreatestInBST = BST.findGreatestNumber(root)
+console.log('testingFindGreatestInBST',testingFindGreatestInBST);
+
+
