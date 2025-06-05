@@ -66,4 +66,127 @@ class BinarySearchTree {
     // and turn it into the left child of the former parent of the
     // successor node.
 
+    // implementation
+    // 1.check which side to slide in (find which node to delete)
+    // 2.if node has no children delete it
+    // 3.if node has one child , delete node and replace the child
+    // 4.if node has 2 children, find succussor node, replace it with node to delete
+
+    deleteNode(valueToDelete, node) {
+        let currentNode = node;
+        let parrentNodeOfCurrentNode = null
+        let childOfDeleteNode
+        let nodeToDelete
+
+        // finding which node to delete
+        while (currentNode) {
+            // base condition - loops ends when(1.nodeToDelete found or 2.reach end currentnode = null)
+            if (valueToDelete === currentNode.data) {
+                nodeToDelete = currentNode
+                return
+            }
+            parrentNodeOfCurrentNode = currentNode
+            if (valueToDelete < currentNode.data) {
+                currentNode = currentNode.leftChild
+            }
+            else if (valueToDelete > currentNode.data) {
+                currentNode = currentNode.rightChild
+            }
+        }
+
+        if (!currentNode) return null;
+
+        // if deleting node has 2 children
+        if (nodeToDelete.leftChild && nodeToDelete.rightChild) {
+            replaceWithSuccessorNode(nodeToDelete)
+        } else {
+            // if delete node has 0 or 1 children
+            childOfDeleteNode = (nodeToDelete.leftChild || nodeToDelete.rightChild)
+            if (!parrentNodeOfCurrentNode) {
+                // copying of child data into root node and unlinked the child
+                nodeToDelete.data = childOfDeleteNode.data
+                nodeToDelete.leftChild = childOfDeleteNode.leftChild
+                nodeToDelete.rightChild = childOfDeleteNode.rightChild
+            } else {
+                // replacing deletingnode child into deleting node
+                if (parrentNodeOfCurrentNode.leftChild === nodeToDelete) {
+                    parrentNodeOfCurrentNode.leftChild = nodeToDelete.leftChild
+                }
+                else if (parrentNodeOfCurrentNode.rightChild === nodeToDelete) {
+                    parrentNodeOfCurrentNode.leftChild = nodeToDelete.rightChild
+                }
+            }
+        }
+
+
+
+    }
+
+
+
+
+    // version one
+    // replaceWithSuccessorNode(node) {
+    //     // finding its right child and then keep looking on left for successor
+    //     let successorNode = node.rightChild
+    //     let parentOfSuccessorNode = node
+
+    //     if (!successorNode.leftChild) {
+    //         node.data = successorNode.data
+    //         parentOfSuccessorNode.rightChild = successorNode.rightChild
+    //         return
+    //     }
+
+    //     while (successorNode.leftChild) {
+    //         parentOfSuccessorNode = successorNode
+    //         successorNode = successorNode.leftChild
+    //     }
+
+    //     //assigning successor value to node to deleted
+    //     node.data = successorNode.data
+
+    //     //   unlinking the successor node after replaced to root 
+    //     if (parentOfSuccessorNode.leftChild === successorNode) {
+    //         parentOfSuccessorNode.leftChild = successorNode.rightChild
+    //     } else {
+    //         parentOfSuccessorNode.rightChild = successorNode.rightChild
+    //     }
+    //     return successorNode
+
+    // }
+
+    // version two
+    replaceWithSuccessorNode(node){
+        let successorNode = node.rightChild
+        let parentOfSuccessorNode = node
+
+        // if leftchild is not there on successor node
+        if(!successorNode.leftChild){
+             node.data = successorNode.data
+             node.rightChild = successorNode.rightChild
+             return
+        }
+
+        // finding last chain value of leftchild(successor node)
+        while(successorNode.leftChild){
+            parentOfSuccessorNode = successorNode
+            successorNode = successorNode.leftChild
+        }
+
+        // assinging successor value to root
+        node.data = successorNode.data
+
+        // unlinking successor node
+        if(successorNode.rightChild){
+            parentOfSuccessorNode.leftChild = successorNode.rightChild
+        }else{
+            parentOfSuccessorNode.leftChild = null
+        }
+
+        return successorNode
+        
+
+
+
+    }
 }
