@@ -862,9 +862,67 @@ function insertValuesInToEmptyBST(){
        
 
 }
-insertValuesInToEmptyBST()
+// insertValuesInToEmptyBST()
 
-let testingFindGreatestInBST = BST.findGreatestNumber(root)
-console.log('testingFindGreatestInBST',testingFindGreatestInBST);
+// let testingFindGreatestInBST = BST.findGreatestNumber(root)
+// console.log('testingFindGreatestInBST',testingFindGreatestInBST);
 
 
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------- Heaps -----------------------
+
+// import Heap from "./NodeBased_Data-structures/PriorityQueues-Heaps/Heap.js"
+// const heap = new Heap()
+// heap.insert(50)
+// heap.insert(52)
+// heap.insert(125)
+// heap.insert(42)
+// heap.insert(37)
+// heap.insert(18)
+// let index = 1
+// console.log('heap',heap.data)
+// console.log('heap',heap.pop(),heap)
+
+
+
+
+// --------------------------- Tries -----------------------------
+
+import Tries from "./NodeBased_Data-structures/Tries/Tries.js"
+
+let testingTries = new Tries()
+console.log('testingTries', testingTries);
+console.log('testingTries',testingTries.insert('cat'), testingTries);
+
+const commonlySearchedWords = [
+  "weather", "news", "facebook", "youtube", "google",
+  "translate", "maps", "near me", "restaurants", "movies",
+  "covid", "whatsapp", "instagram", "login", "amazon",
+  "flipkart", "cricket", "score", "time", "date",
+  "speed test", "calculator", "online", "download", "song",
+  "photo", "video", "how to", "what is", "why",
+  "bank", "loan", "electricity bill", "train status", "flight",
+  "tax", "income tax", "exam result", "weather tomorrow", "current affairs",
+  "ai tools", "chatgpt", "stock price", "bitcoin", "gold rate",
+  "IPL", "world cup", "festival", "recipe", "temple near me"
+];
+
+function addingWordsToTries(){
+      for(const word of commonlySearchedWords){
+        testingTries.insert(word)
+      }
+   console.log('testingTries', testingTries);
+}
+addingWordsToTries()
+
+console.log('search tries', testingTries.search('google'));
