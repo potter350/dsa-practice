@@ -46,6 +46,21 @@ export class Tries {
         // Return true only if it's the end of a complete word
         return currentNode.isEndOfWord;
     }
+
+    
+
+    collectAllWords(array, node, storeKeys){
+        let currentNode = node || this.root;
+
+        if(currentNode.isEndOfWord){
+             array.push(storeKeys)
+        }
+
+        for(const[key, childnode] of Object.entries(currentNode.children) ){
+            this.collectAllWords(array, childnode, storeKeys + key)
+        }
+        return array
+    }
 }
 
 export default Tries;

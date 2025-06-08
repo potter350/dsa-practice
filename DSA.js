@@ -926,3 +926,4 @@ function addingWordsToTries(){
 addingWordsToTries()
 
 console.log('search tries', testingTries.search('google'));
+console.log('print all words in tries', testingTries.collectAllWords2([],null,''));
