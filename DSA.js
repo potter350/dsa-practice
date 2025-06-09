@@ -901,8 +901,8 @@ function insertValuesInToEmptyBST(){
 import Tries from "./NodeBased_Data-structures/Tries/Tries.js"
 
 let testingTries = new Tries()
-console.log('testingTries', testingTries);
-console.log('testingTries',testingTries.insert('cat'), testingTries);
+// console.log('testingTries', testingTries);
+// console.log('testingTries',testingTries.insert('cat'), testingTries);
 
 const commonlySearchedWords = [
   "weather", "news", "facebook", "youtube", "google",
@@ -914,16 +914,23 @@ const commonlySearchedWords = [
   "bank", "loan", "electricity bill", "train status", "flight",
   "tax", "income tax", "exam result", "weather tomorrow", "current affairs",
   "ai tools", "chatgpt", "stock price", "bitcoin", "gold rate",
-  "IPL", "world cup", "festival", "recipe", "temple near me"
+  "IPL", "world cup", "festival", "recipe", "temple near me","cat","canon","canopy","car","captain"
 ];
 
 function addingWordsToTries(){
       for(const word of commonlySearchedWords){
         testingTries.insert(word)
       }
-   console.log('testingTries', testingTries);
+//    console.log('testingTries', testingTries);
 }
 addingWordsToTries()
 
-console.log('search tries', testingTries.search('google'));
-console.log('print all words in tries', testingTries.collectAllWords2([],null,''));
+// console.log('search tries', testingTries.search('google'));
+// console.log('print all words in tries', testingTries.collectAllWords([],null,''));
+// console.log('autocomplete tries', testingTries.autoComplete('ca'));
+
+
+// console.log('1',testingTries.printAllWordsFromTries())
+// console.log('2',testingTries.collectAllWords([],null,'',))
+
+console.log('autosuggest',testingTries.autoSuggest('c'))

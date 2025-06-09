@@ -28,6 +28,11 @@ export class Tries {
         return currentNode.isEndOfWord = true;
     }
 
+    searchWord(word) {
+        let searchWord = this.search(word)
+        return searchWord.isEndOfWord
+    }
+
     // Search for a word in the Trie
     search(word) {
         let currentNode = this.root;
@@ -42,25 +47,68 @@ export class Tries {
                 return false;
             }
         }
-
         // Return true only if it's the end of a complete word
-        return currentNode.isEndOfWord;
+        return currentNode;
     }
 
-    
 
-    collectAllWords(array, node, storeKeys){
+
+    collectAllWords(array, node, storeKeys) {
         let currentNode = node || this.root;
 
-        if(currentNode.isEndOfWord){
-             array.push(storeKeys)
+        if (currentNode.isEndOfWord) {
+            array.push(storeKeys)
         }
 
-        for(const[key, childnode] of Object.entries(currentNode.children) ){
+        for (const [key, childnode] of Object.entries(currentNode.children)) {
             this.collectAllWords(array, childnode, storeKeys + key)
         }
         return array
     }
+
+    autoComplete(prefix) {
+        let currentNode = this.search(prefix)
+        console.log('search prefix', currentNode);
+
+        if (!currentNode) return null;
+
+        return this.collectAllWords([], currentNode, prefix)
+
+    }
+
+
+
+
+
+
+
+   
+
+    printAllWordsFromTries(collection = [], node = null, word = '') {
+        let currentNode = node || this.root
+
+        if(currentNode.isEndOfWord){
+            collection.push(word)
+        }
+        
+        for(const [key, childnode] of Object.entries(currentNode.children) ){
+            this.printAllWordsFromTries(collection, childnode, word + key)
+            
+        }
+        return collection
+    }
+
+    autoSuggest(prefix){
+        let currentNode = this.search(prefix)
+        if(!currentNode) return null;
+
+        return this.printAllWordsFromTries([],currentNode,prefix)
+    }
+
+
+
+
+
 }
 
 export default Tries;
