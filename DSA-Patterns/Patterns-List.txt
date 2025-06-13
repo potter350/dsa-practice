@@ -1,0 +1,45 @@
+
+
+1. Two Pointer (take two sides move untill find target ) only works on sorted array
+
+Two Sum (in a sorted array) & 
+for unsorted hashmap lookup pattern
+
+Reverse String  - wont work unless convert to array,split & join , so for reverseLoop
+Valid Palindrome
+Remove Duplicates from Sorted Array
+Remove Nth Node from End of List
+Minimum Window Substring
+Odd Even Linked List
+Intersection of Linked Lists
+3Sum
+Sort Colors (Dutch National Flag Problem)
+Longest Substring Without Repeating Characters (Sliding Window)
+Linked List Cycle Detection (Floyd's Cycle-Finding Algorithm)
+
+
+Expanded List of Common Two Pointer Questions
+Questions Involving Repeating/Duplicates
+
+Remove Duplicates from Sorted Array
+Remove Duplicates from Sorted List
+Remove Element
+Move Zeroes
+Longest Substring Without Repeating Characters
+Find the Duplicate Number
+Contains Duplicate II
+
+
+Other Popular Two Pointer Questions
+Two Sum (Sorted Array)
+3Sum
+Valid Palindrome
+Minimum Window Substring
+Intersection of Two Linked Lists
+Reverse String
+Sort Colors (Dutch National Flag Problem)
+Container With Most Water
+Trapping Rain Water (Two Pointer Approach)
+Linked List Cycle Detection (Floyd’s Cycle-Finding Algorithm)
+Merge Sorted Array
+Squares of a Sorted Array
